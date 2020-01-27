@@ -95,3 +95,13 @@ margin: 50px;
 .sign_form .form-control{
   width: 70%!important;
 }
+
+/*////////////////*/
+.footer{
+   background-image:linear-gradient(to right top, #234253, #1c404d, #173d47, #143b40, #133839);
+  height: 200px;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /*border:1px solid red;*/
+}

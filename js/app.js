@@ -11,7 +11,7 @@ $(document).ready(function(){
 	}
 	$("#sign_up_form").submit(function(e){
 		e.preventDefault();
-		if(signup_valid){
+		if(signup_valid()){
 			 $(".signup-msg").html("");
 			 var form =$(this);
 			 var form_url=form.attr('action');

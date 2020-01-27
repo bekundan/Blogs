@@ -11,10 +11,17 @@ $repass=$_POST["repass"];
     
 $instquery = "INSERT INTO `users`(`Name`, `U_Name`, `Role`,  `Email`, `Phone`) VALUES ('$name','$uname',2,'$email',$phone )";
 
-echo $instquery;
-$result =mysqli_query($connection, $instquery);
-echo $result;
 
+$result = mysqli_query($connection, $instquery);
+
+if($result){
+	$user_id = mysqli_insert_id($connection);
+	$query = "INSERT INTO `user_auth`(`U_id`, `Pwd`, `Email_vfy`, `Phone_vfy`) 
+	VALUES ($user_id,'".md5($pass)."',0,0)";
+
+	mysqli_query($connection, $query);
+	echo "Account successfully created";
+}
 
 
 ?>    
