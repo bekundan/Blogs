@@ -95,6 +95,10 @@ margin: 50px;
 .sign_form .form-control{
   width: 70%!important;
 }
+.login_from{
+  display: none;
+  margin: 30px;
+}
 
 /*////////////////*/
 .footer{

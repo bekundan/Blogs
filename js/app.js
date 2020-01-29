@@ -31,7 +31,11 @@ $(document).ready(function(){
 		}
 	});
 
-
+	$(".Login").click(function(){
+		
+		$(".sign_form").toggle();
+		$(".login_from").toggle();
+	});
 
 
 });

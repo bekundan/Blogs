@@ -23,5 +23,7 @@ if($result){
 	echo "Account successfully created";
 }
 
+		// LOgin process
+
 
 ?>    

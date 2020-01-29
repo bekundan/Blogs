@@ -2,6 +2,14 @@
 include "config.php";
 session_start();
 $article_query = "SELECT * FROM `articles` JOIN users ON articles. Author_id = users.id";
+
+if (isset($_SESSION["USERNAME"]) && ($_SESSION["USERNAME"])) {
+    $login_status=true;
+    $display_name="Hello".$_SESSION["USERNAME"]."!";
+}
+else{
+    $login_status =false;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +40,21 @@ $article_query = "SELECT * FROM `articles` JOIN users ON articles. Author_id = u
                                 <a class="nav-link" href="#Contact">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="modal" data-target="#sign_modal">SignUp</a>
+                                <?php
+                      if($login_status){
+                     echo '<li class="nav-item">
+                                <a class="nav-link logout-trigger" href="files/logout.php"> 
+                                Logout'." ".$display_name.'</a>
+                            </li>';
+
+                  }else{
+                   echo ' <li class="nav-item">
+                            <a class="nav-link" id="signup-trigger" data-toggle="modal" data-target="#sign-modal">
+                             Sign up
+                            </a>
+                          </li>';
+                  }
+                  ?>
                             </li>
                         </ul>
                     </div>
@@ -174,6 +196,23 @@ $article_query = "SELECT * FROM `articles` JOIN users ON articles. Author_id = u
                                 <div class="signup-msg text-danger font-weight-bold"></div>
                                 <button class="btn btn-primary" type="submit">submit</button>
                             </form>
+                            <div>You allready signUp <span class="Login">LogIn</span></div>
+                        </div>
+                        <div class="login_from">
+                            <form action="" method="POST">
+                                 <div class="form-group">
+                                    <label for="formGroupExampleInput">Email</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Email" name="loginuser">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="password" name="loginpass">
+                                </div>
+                                 <input type="hidden" name="login-form-submit" value=1>
+                                <div class="signup-msg text-danger font-weight-bold"></div>
+                                <button class="btn btn-primary" type="submit">submit</button>
+                            </form>
+                            <div>You are new here <span class="Login">SignIn</span></div>
                         </div>
                     </div>
                     
@@ -245,7 +284,7 @@ $article_query = "SELECT * FROM `articles` JOIN users ON articles. Author_id = u
                                    </p>
                                </div>
                            </div>
-                           <div class="col-12 col-sm-6">
+                           <div class="col-12 col-sm-6 ">
                             <h1 class="text-center text-white">Social media</h1>
                                <div class="card mt-5">
                                    <p>
