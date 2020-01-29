@@ -23,32 +23,33 @@ if(isset($_POST["login-form-submit"]) && !empty($_POST["login-form-submit"])){
 
 	$logquery ="SELECT * FROM `users` WHERE Email ='$loginuser' OR phone='$loginuser'";
 
-	$result =mysqli_query($connection,$result);
+	$result =mysqli_query($connection,$logquery);
 
 if($result){
 	$row =mysqli_fetch_assoc($result);
 	$uid =$row["id"];
 	$users_displayname =$row["Name"];
 
-	$logquery ="SELECT * FROM user_auth WHERE U_id =$uid";
+	$logquery2 ="SELECT * FROM user_auth WHERE U_id =$uid";
 
-	$result2 =mysqli_query($connection,$logquery2);
+	$result2  = mysqli_query($connection,$logquery2);
 
 	if($result2){
 		$row2 =mysqli_fetch_assoc($result2);
-		$getpass =$row["Pwd"];
+		$getpass =$row2["Pwd"];
 		if (md5($loginpass)===($getpass)) {
 			
 			$_SESSION["USERNAME"]=$users_displayname;
-			$_SESSION["USER_ROLE"]=$row["Role"];
-			$_SESSION["USER_ID"]=$row["id"];
+			$_SESSION["USER_ROLE"]=$row2["Role"];
+			$_SESSION["USER_ID"]=$row2["id"];
+			echo "$users_displayname";
 		}
 		else{
 			echo "Failure";
 		}
 	 }
    }
- }
+ };
 
 
 ?>

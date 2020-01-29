@@ -27,7 +27,7 @@ $(document).ready(function(){
 			 	}
 			 });
 		}else{
-			$(".signup-msg").html("this password doesn't match! ")
+			$(".signup-msg").html("this password doesn't match!")
 		}
 	});
 

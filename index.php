@@ -6,6 +6,8 @@ $article_query = "SELECT * FROM `articles` JOIN users ON articles. Author_id = u
 if (isset($_SESSION["USERNAME"]) && ($_SESSION["USERNAME"])) {
     $login_status=true;
     $display_name="Hello".$_SESSION["USERNAME"]."!";
+
+    echo "$display_name";
 }
 else{
     $login_status =false;
@@ -43,13 +45,13 @@ else{
                                 <?php
                       if($login_status){
                      echo '<li class="nav-item">
-                                <a class="nav-link logout-trigger" href="files/logout.php"> 
+                                <a class="nav-link " href="files/logout.php"> 
                                 Logout'." ".$display_name.'</a>
                             </li>';
 
                   }else{
                    echo ' <li class="nav-item">
-                            <a class="nav-link" id="signup-trigger" data-toggle="modal" data-target="#sign-modal">
+                            <a class="nav-link" id="signup-trigger" data-toggle="modal" data-target="#sign_modal">
                              Sign up
                             </a>
                           </li>';
@@ -199,14 +201,14 @@ else{
                             <div>You allready signUp <span class="Login">LogIn</span></div>
                         </div>
                         <div class="login_from">
-                            <form action="" method="POST">
-                                 <div class="form-group">
+                            <form action="action.php" method="POST">
+                                     <div class="form-group">
                                     <label for="formGroupExampleInput">Email</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Email" name="loginuser">
+                                    <input type="text" class="form-control" id="useremail" placeholder="Email" name="loginuser">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">password</label>
-                                    <input type="password" class="form-control" id="password" placeholder="password" name="loginpass">
+                                    <input type="password" class="form-control" id="userpassword" placeholder="password" name="loginpass">
                                 </div>
                                  <input type="hidden" name="login-form-submit" value=1>
                                 <div class="signup-msg text-danger font-weight-bold"></div>
