@@ -43,7 +43,7 @@ $("#login_froms").submit(function(e){
 	var form =$(this);
 	var form_url =from.attr('action');
 	var form_type =form.attr('method');
-	$ajax({
+	$.ajax({
 		type:form_type,
 		url:form_url,
 		data:form.serialize(),
@@ -66,7 +66,7 @@ $(".updated_post").submit(function(e){
 	var form =$(this);
 	var form_url=from.attr('action');
 	var form_type=from.attr('method');
-	$ajax({
+	$.ajax({
 		type:form_type,
 		url:form_url,
 		data:form.serialize,
@@ -86,7 +86,7 @@ $(".search_users").submit(function(e){
 	var form_url=form.attr("action");
 	var form_type =form.attr("method");
 	var form_data= form.serialize();
-	$ajax({
+	$.ajax({
 		type:form_type,
 		url:form_url,
 		data:form_data,
@@ -94,7 +94,7 @@ $(".search_users").submit(function(e){
 			$("#user_response").html("");
 			var data =JSON.parse(data);
 			console.log(data);
-			if (data["status"]== "User found") {
+			if (data["status"] == "User found") {
 				for(i=0; i< Object.keys(data).length-1;i++){
 					$("#user_response").append("<tr><td>"+data[i]["Name"]+"</td><td>"+data[i]["phone"]+"</td><td>"+data[i]["Email"]+"</td><td>"
 						+data[i]["Code"]+"</td></tr>");  
