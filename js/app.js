@@ -85,13 +85,13 @@ $(".search_users").submit(function(e){
 	var form=$(this);
 	var form_url=form.attr("action");
 	var form_type =form.attr("method");
-	var form_data= form.serialize;
+	var form_data= form.serialize();
 	$ajax({
 		type:form_type,
 		url:form_url,
 		data:form_data,
 		success:function(){
-			$(".user_response").html("");
+			$("#user_response").html("");
 			var data =JSON.parse(data);
 			console.log(data);
 			if (data["status"]== "User found") {
