@@ -93,13 +93,14 @@ $(".search_users").submit(function(e){
 		success:function(){
 			$(".user_response").html("");
 			var data =JSON.parse(data);
+			console.log(data);
 			if (data["status"]== "User found") {
 				for(i=0; i< Object.key(data).length-1,i++){
-					$(".user_response").append("<tr><td>"+data[i]["Name"]+"</td><td>"+data[i]["phone"]+"</td><td>"+data[i]["Email"]+"</td><td>"
+					$("#user_response").append("<tr><td>"+data[i]["Name"]+"</td><td>"+data[i]["phone"]+"</td><td>"+data[i]["Email"]+"</td><td>"
 						+data[i]["Code"]+"</td></tr>");  
 				}
 			}else{
-				$(".user_response").html("<tr><td>"+data["status"]+"</td></tr>");
+				$("#user_response").html("<tr><td>"+data["status"]+"</td></tr>");
 			}			
 		}
 	});
