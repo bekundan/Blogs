@@ -41,7 +41,7 @@ $(document).ready(function(){
 $("#login_froms").submit(function(e){
 	e.preventDefault();
 	var form =$(this);
-	var form_url =from.attr('action');
+	var form_url =form.attr('action');
 	var form_type =form.attr('method');
 	$.ajax({
 		type:form_type,
@@ -49,7 +49,7 @@ $("#login_froms").submit(function(e){
 		data:form.serialize(),
 		success:function(data){
 			$("#sign_modal").modal('hide');
-			locaton.reload();
+			location.reload();
 		}
 	});
 });
@@ -64,8 +64,8 @@ $(".modify-post").click(function(){
 $(".updated_post").submit(function(e){
 	e.preventDefault;
 	var form =$(this);
-	var form_url=from.attr('action');
-	var form_type=from.attr('method');
+	var form_url=form.attr('action');
+	var form_type=form.attr('method');
 	$.ajax({
 		type:form_type,
 		url:form_url,
