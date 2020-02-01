@@ -62,14 +62,14 @@ $(".modify-post").click(function(){
 
 // submit the updated post
 $(".updated_post").submit(function(e){
-	e.preventDefault();
+	e.preventDefault;
 	var form =$(this);
 	var form_url=from.attr('action');
 	var form_type=from.attr('method');
 	$ajax({
 		type:form_type,
 		url:form_url,
-		data:form.serialize(),
+		data:form.serialize,
 		success:function(data){
 			// alert(data);
 			// console.log(data);
@@ -95,7 +95,7 @@ $(".search_users").submit(function(e){
 			var data =JSON.parse(data);
 			console.log(data);
 			if (data["status"]== "User found") {
-				for(i=0; i< Object.key(data).length-1,i++){
+				for(i=0; i< Object.keys(data).length-1;i++){
 					$("#user_response").append("<tr><td>"+data[i]["Name"]+"</td><td>"+data[i]["phone"]+"</td><td>"+data[i]["Email"]+"</td><td>"
 						+data[i]["Code"]+"</td></tr>");  
 				}
