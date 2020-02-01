@@ -1,16 +1,13 @@
 <?php
 include "config.php";
 session_start();
-$article_query = "SELECT * FROM `articles` JOIN users ON articles. Author_id = users.id";
-
+$article_query = "SELECT * FROM `articles` JOIN users ON articles. Author_id = users.id limit 2";
 if (isset($_SESSION["USERNAME"]) && ($_SESSION["USERNAME"])) {
-    $login_status=true;
-    $display_name="Hello".$_SESSION["USERNAME"]."!";
-
-    echo "$display_name";
+$login_status=true;
+$display_name="Hello".$_SESSION["USERNAME"]."!";
 }
 else{
-    $login_status =false;
+$login_status =false;
 }
 ?>
 <!DOCTYPE html>
@@ -43,20 +40,19 @@ else{
                             </li>
                             <li class="nav-item">
                                 <?php
-                      if($login_status){
-                     echo '<li class="nav-item">
-                                <a class="nav-link " href="files/logout.php"> 
-                                Logout'." ".$display_name.'</a>
-                            </li>';
-
-                  }else{
-                   echo ' <li class="nav-item">
-                            <a class="nav-link" id="signup-trigger" data-toggle="modal" data-target="#sign_modal">
-                             Sign up
-                            </a>
-                          </li>';
-                  }
-                  ?>
+                                if($login_status){
+                                echo '<li class="nav-item">
+                                    <a class="nav-link " href="logout.php">
+                                    Logout'." ".$display_name.'</a>
+                                </li>';
+                                }else{
+                                echo ' <li class="nav-item">
+                                    <a class="nav-link" id="signup-trigger" data-toggle="modal" data-target="#sign_modal">
+                                        Sign up
+                                    </a>
+                                </li>';
+                                }
+                                ?>
                             </li>
                         </ul>
                     </div>
@@ -198,11 +194,13 @@ else{
                                 <div class="signup-msg text-danger font-weight-bold"></div>
                                 <button class="btn btn-primary" type="submit">submit</button>
                             </form>
-                            <div>You allready signUp <span class="Login">LogIn</span></div>
+                            <div class="logetxt">You allready signUp <span class="Login text-white">LogIn</span></div>
                         </div>
+                        <!-- login form -->
+                        
                         <div class="login_from">
-                            <form action="action.php" method="POST">
-                                     <div class="form-group">
+                            <form id="login_froms" action="action.php" method="POST">
+                                <div class="form-group">
                                     <label for="formGroupExampleInput">Email</label>
                                     <input type="text" class="form-control" id="useremail" placeholder="Email" name="loginuser">
                                 </div>
@@ -210,11 +208,11 @@ else{
                                     <label for="password">password</label>
                                     <input type="password" class="form-control" id="userpassword" placeholder="password" name="loginpass">
                                 </div>
-                                 <input type="hidden" name="login-form-submit" value=1>
+                                <input type="hidden" name="login-form-submit" value=1>
                                 <div class="signup-msg text-danger font-weight-bold"></div>
                                 <button class="btn btn-primary" type="submit">submit</button>
                             </form>
-                            <div>You are new here <span class="Login">SignIn</span></div>
+                            <div class="logetxt">You are new here <span class="Login text-white">SignIn</span></div>
                         </div>
                     </div>
                     
@@ -248,63 +246,90 @@ else{
             <section>
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="./images/postimg.jpg" alt="Card image">
-                                <div class="card-body bg-light">
+                        <?php
+                        $result = mysqli_query($connection, $article_query);
+                        while($row = mysqli_fetch_assoc($result)){
+                        echo '<div class="row">
+                            <div class="col-12 col-sm-6">
+                                <div class="card ml-5" style="width:400px">
+                                    <img class="card-img-top" src="./images/postimg.jpg" alt="Card image">
+                                    <div class="card-body bg-light">
+                                        <a href="#" class="text-center" ><p>'.$row["Ctg"].'</p></a>
+                                        <p>'.$row["Post_title"].'<p>
+                                            <p class="card-text">'.$row["Post"].'</p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
+                            }
+                            ?>
+                            <!--
+                            <div class="article_summary">
+                                <h1></h1>
+                                <p>Date: '.$row["Created_at"].'</p>
+                                <p>Category: '.$row["Ctg"].'</p>
+                                <p>Author: '.$row["Name"].'</p>
+                                <p class="mt-3">
+                                    '.$row["Post"].'
+                                </p>
+                            </div> -->
+                            <!-- article_summary -- -->
+                            
+                            <div class="col-12 col-sm-6">
+                                <div class="card" style="width:400px">
+                                    <img class="card-img-top" src="./images/postimg.jpg" alt="Card image">
+                                    <div class="card-body bg-light">
                                         <a href="#" class="text-center" ><p>Trave/Tech</p></a>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, commodi!.</p>
-                                    
+                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, commodi!.</p>
+                                        
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="card" style="width:400px">
-                                <img class="card-img-top" src="./images/postimg.jpg" alt="Card image">
-                                <div class="card-body bg-light">
+                            <div class="col-12 col-sm-6">
+                                <div class="card" style="width:400px">
+                                    <img class="card-img-top" src="./images/postimg.jpg" alt="Card image">
+                                    <div class="card-body bg-light">
                                         <a href="#" class="text-center" ><p>Trave/Tech</p></a>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, commodi!.</p>
-                                    
+                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, commodi!.</p>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <!-- new post section end-->
-
-            <!-- foooter -->
-
+                </section>
+                <!-- new post section end-->
+                <!-- foooter -->
                 <footer>
                     <div class="container-fluid footer">
                         <div class="row">
-                           <div class="col-12 col-sm-6">
-                            <h1 class="text-center text-white">Aboutus</h1>
-                               <div class="card mt-5">
-                                   <p>
-                                       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, ut voluptatem, deserunt cupiditate sunt ad necessitatibus corrupti dolor modi architecto alias, impedit pariatur repellat accusantium culpa. Temporibus sapiente non sequi?
-                                   </p>
-                               </div>
-                           </div>
-                           <div class="col-12 col-sm-6 ">
-                            <h1 class="text-center text-white">Social media</h1>
-                               <div class="card mt-5">
-                                   <p>
-                                       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, ut voluptatem, deserunt cupiditate sunt ad necessitatibus corrupti dolor modi architecto alias, impedit pariatur repellat accusantium culpa. Temporibus sapiente non sequi?
-                                   </p>
-                               </div>
-                           </div>
+                            <div class="col-12 col-sm-6">
+                                <h1 class="text-center text-white">Aboutus</h1>
+                                <div class="card mt-5">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, ut voluptatem, deserunt cupiditate sunt ad necessitatibus corrupti dolor modi architecto alias, impedit pariatur repellat accusantium culpa. Temporibus sapiente non sequi?
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 ">
+                                <h1 class="text-center text-white">Social media</h1>
+                                <div class="card mt-5">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, ut voluptatem, deserunt cupiditate sunt ad necessitatibus corrupti dolor modi architecto alias, impedit pariatur repellat accusantium culpa. Temporibus sapiente non sequi?
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </footer>
-
-            <!-- footer end -->
-            <script
-            src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-            crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-            <script src="js/app.js"></script>
-        </body>
-    </html>
+                <!-- footer end -->
+                <script
+                src="https://code.jquery.com/jquery-3.4.1.js"
+                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+                crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+                <script src="js/app.js"></script>
+            </body>
+        </html>

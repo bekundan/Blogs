@@ -99,6 +99,34 @@ margin: 50px;
   display: none;
   margin: 30px;
 }
+.Login{
+  color: red!important;
+  box-sizing: border-box;
+  border-top: 1px solid red;
+  border-bottom: 1px solid red;
+  border-radius: 10px;
+}
+
+.logetxt{
+  color:#000;
+  font-size: 1.2rem;
+   font-family: 'Roboto', sans-serif;
+   font-weight: bold;
+
+}
+
+.modepost_table th,td{ 
+width: 150px; 
+text-align: center; 
+border: 1px solid black; 
+padding: 5px;
+}
+
+.modepost_table textarea{
+  width: 100%;
+  height: 150px;
+  border: none;
+}
 
 /*////////////////*/
 .footer{

@@ -40,9 +40,9 @@ if($result){
 		if (md5($loginpass)===($getpass)) {
 			
 			$_SESSION["USERNAME"]=$users_displayname;
-			$_SESSION["USER_ROLE"]=$row2["Role"];
-			$_SESSION["USER_ID"]=$row2["id"];
-			echo "$users_displayname";
+			$_SESSION["USER_ROLE"]=$row["Role"];
+			$_SESSION["USER_ID"]=$row["id"];
+			header("Location:index.php");
 		}
 		else{
 			echo "Failure";
@@ -51,5 +51,45 @@ if($result){
    }
  };
 
+ //update post submition
+
+ if (isset($_POST["updatepostform"]) && !empty($_POST["updatepostform"])) {
+ 	$newpost = mysqli_real_escape_string($connection,$_POST["newpost"]);
+ 	$articleid =mysqli_real_escape_string($connection,$_POST["articleid"]);
+
+ 	$updatequery ="UPDATE articles SET Post='$newpost' WHERE article_id ='$articleid'";
+
+ 	if (mysqli_query($connection,$updatequery)) {
+ 		header("Location:admin.php");
+ 		echo "update success";
+ 	}
+ 	else{
+ 		echo "$updatequery";
+ 		echo("Error description: " . mysqli_error($connection));
+ 	}
+ };
+
+  // search users
+if (isset($_POST["search_users"]) && !empty($_POST["search_users"])) {
+	
+	$user_name = mysqli_real_escape_string($connection,$_POST["uname"]);
+	$user_email = mysqli_real_escape_string($connection,$_POST["uemal"]);
+	$user_phone = mysqli_real_escape_string($connection,$_POST["uphone"]);
+
+	$searchquery ="SELECT * FROM users JOIN Role ON roles.id = users.Role WHERE Name LIKE '%$user_name%'";
+	$result =mysqli_query($connection,$searchquery);
+	if (!mysqli_num_rows($result)) {
+		$all_results = array('status'=>'No user found!');
+	}
+	else{
+			$all_results = array('status'=>'User found');
+			while($row = mysqli_fetch_assoc($result)){
+			array_push($all_results,$row);
+			header("Location:admin.php");
+		}
+		
+	}
+		echo json_encode($all_results);
+	}
 
 ?>
