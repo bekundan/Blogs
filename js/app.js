@@ -64,15 +64,15 @@ $(".modify-post").click(function(){
 $(".updated_post").submit(function(e){
 	e.preventDefault();
 	var form =$(this);
-	var form_url="action.php";
+	var form_url=from.attr('action');
 	var form_type=from.attr('method');
 	$ajax({
 		type:form_type,
 		url:form_url,
 		data:form.serialize(),
 		success:function(data){
-			alert(data);
-			console.log(data);
+			// alert(data);
+			// console.log(data);
 		}
 	});
 
@@ -82,7 +82,28 @@ $(".updated_post").submit(function(e){
 
 $(".search_users").submit(function(e){
 	e.preventDefault;
-})
+	var form=$(this);
+	var form_url=form.attr("action");
+	var form_type =form.attr("method");
+	var form_data= form.serialize;
+	$ajax({
+		type:form_type,
+		url:form_url,
+		data:form_data,
+		success:function(){
+			$(".user_response").html("");
+			var data =JSON.parse(data);
+			if (data["status"]== "User found") {
+				for(i=0; i< Object.key(data).length-1,i++){
+					$(".user_response").append("<tr><td>"+data[i]["Name"]+"</td><td>"+data[i]["phone"]+"</td><td>"+data[i]["Email"]+"</td><td>"
+						+data[i]["Code"]+"</td></tr>");  
+				}
+			}else{
+				$(".user_response").html("<tr><td>"+data["status"]+"</td></tr>");
+			}			
+		}
+	});
+});
 
 
 });

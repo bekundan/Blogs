@@ -80,12 +80,14 @@ if (isset($_POST["search_users"]) && !empty($_POST["search_users"])) {
 	$result =mysqli_query($connection,$searchquery);
 	if (!mysqli_num_rows($result)) {
 		$all_results = array('status'=>'No user found!');
+		echo "not found";
 	}
 	else{
 			$all_results = array('status'=>'User found');
 			while($row = mysqli_fetch_assoc($result)){
 			array_push($all_results,$row);
-			header("Location:admin.php");
+			// header("Location:admin.php");
+			echo "$all_results";
 		}
 		
 	}
