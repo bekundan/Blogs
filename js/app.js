@@ -72,7 +72,7 @@ $(".updated_post").submit(function(e){
 		data:form.serialize,
 		success:function(data){
 			// alert(data);
-			// console.log(data);
+			console.log(data);
 		}
 	});
 
@@ -85,25 +85,26 @@ $(".search_users").submit(function(e){
 	var form=$(this);
 	var form_url=form.attr("action");
 	var form_type =form.attr("method");
-	var form_data= form.serialize();
+	var form_data= form.serialize;
 	$.ajax({
 		type:form_type,
 		url:form_url,
 		data:form_data,
 		success:function(){
-			$("#user_response").html("");
+			$("#user_response tbody").html("");
 			var data =JSON.parse(data);
 			console.log(data);
-			if (data["status"] == "User found") {
+			if (data["status"] == "User found"){
 				for(i=0; i< Object.keys(data).length-1;i++){
-					$("#user_response").append("<tr><td>"+data[i]["Name"]+"</td><td>"+data[i]["phone"]+"</td><td>"+data[i]["Email"]+"</td><td>"
-						+data[i]["Code"]+"</td></tr>");  
+					$("#user_response tbody").append("<tr><td>"+data[i]["Name"]+"</td><td>"+data[i]["phone"]+"</td><td>"+data[i]["Email"]+"</td><td>"+data[i]["Code"]+"</td></tr>");  
+					
 				}
 			}else{
-				$("#user_response").html("<tr><td>"+data["status"]+"</td></tr>");
+				$("#user_response tbody").html("<tr><td>"+data["status"]+"</td></tr>");
 			}			
 		}
 	});
+	
 });
 
 

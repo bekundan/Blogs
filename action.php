@@ -70,13 +70,13 @@ if($result){
  };
 
   // search users
-if (isset($_POST["search_users"]) && !empty($_POST["search_users"])) {
+if (isset($_POST["user_by_name"]) && !empty($_POST["user_by_name"])) {
 	
 	$user_name = mysqli_real_escape_string($connection,$_POST["uname"]);
-	$user_email = mysqli_real_escape_string($connection,$_POST["uemal"]);
+	$user_email = mysqli_real_escape_string($connection,$_POST["uemail"]);
 	$user_phone = mysqli_real_escape_string($connection,$_POST["uphone"]);
 
-	$searchquery ="SELECT * FROM users JOIN Role ON roles.id = users.Role WHERE Name LIKE '%$user_name%'";
+	$searchquery ="SELECT * FROM users JOIN roles ON roles.id = users.Role WHERE Name LIKE '%$user_name%'";
 	$result =mysqli_query($connection,$searchquery);
 	if (!mysqli_num_rows($result)) {
 		$all_results = array('status'=>'No user found!');
@@ -87,11 +87,13 @@ if (isset($_POST["search_users"]) && !empty($_POST["search_users"])) {
 			while($row = mysqli_fetch_assoc($result)){
 			array_push($all_results,$row);
 			// header("Location:admin.php");
-			echo "$all_results";
+			// echo "$all_results";
+			echo json_encode($all_results);
+
 		}
 		
 	}
-		echo json_encode($all_results);
+		// echo json_encode($all_results);
 	}
 
 ?>
