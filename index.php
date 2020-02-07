@@ -18,6 +18,7 @@ $login_status =false;
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
     </head>
     <body>
         <header>
@@ -30,7 +31,7 @@ $login_status =false;
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item ">
-                                <a class="nav-link" href="#mytools">About</a>
+                                <a class="nav-link" href="#f_input">About</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#works">Projects</a>
@@ -246,23 +247,7 @@ $login_status =false;
             <section>
                 <div class="container">
                     <div class="row">
-                        <?php
-                        $result = mysqli_query($connection, $article_query);
-                        while($row = mysqli_fetch_assoc($result)){
-                        echo '<div class="row">
-                            <div class="col-12 col-sm-6">
-                                <div class="card ml-5" style="width:400px">
-                                    <img class="card-img-top" src="./images/postimg.jpg" alt="Card image">
-                                    <div class="card-body bg-light">
-                                        <a href="#" class="text-center" ><p>'.$row["Ctg"].'</p></a>
-                                        <p>'.$row["Post_title"].'<p>
-                                            <p class="card-text">'.$row["Post"].'</p>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>';
-                            }
+                       
                             ?>
                             <!--
                             <div class="article_summary">
@@ -302,34 +287,36 @@ $login_status =false;
                 <!-- new post section end-->
                 <!-- foooter -->
                 <footer>
-                    <div class="container-fluid footer">
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-                                <h1 class="text-center text-white">Aboutus</h1>
-                                <div class="card mt-5">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, ut voluptatem, deserunt cupiditate sunt ad necessitatibus corrupti dolor modi architecto alias, impedit pariatur repellat accusantium culpa. Temporibus sapiente non sequi?
-                                    </p>
+                    <div class="container-fluid ">
+                       
+                    <div class="row">
+                        <div class="col-12 col-sm-8 offset-sm-3">
+                            <div class="footer_item mb-5 text-center">
+                                <div class="input_form">
+                                    <p class="">Enter Your Mail for Newslatter</p>
+                                    <input type="text" id="f_input" placeholder="enter your mail">
+                                    <input type="submit" id="f_btn" placeholder="submit" data-toggle="modal" data-target="#sign_modal">
                                 </div>
-                            </div>
-                            <div class="col-12 col-sm-6 ">
-                                <h1 class="text-center text-white">Social media</h1>
-                                <div class="card mt-5">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, ut voluptatem, deserunt cupiditate sunt ad necessitatibus corrupti dolor modi architecto alias, impedit pariatur repellat accusantium culpa. Temporibus sapiente non sequi?
-                                    </p>
+                                <hr class="w-100  bg-light text-center">
+                                <div class="icons">
+                                  <a href=""><i class="fab fa-instagram-square"></i></a>
+                                <a href=""><i class="fab fa-facebook-square"></i></a>
+                                <a href=""><i class="fab fa-twitter-square"></i></a>  
                                 </div>
+                                <p class="mt-5  text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, animi.</p>
                             </div>
+                            
                         </div>
                     </div>
-                </footer>
-                <!-- footer end -->
-                <script
-                src="https://code.jquery.com/jquery-3.4.1.js"
-                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-                crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-                <script src="js/app.js"></script>
-            </body>
-        </html>
+                </div>
+            </footer>
+            <!-- footer end -->
+            <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            <script src="js/app.js"></script>
+        </body>
+    </html>

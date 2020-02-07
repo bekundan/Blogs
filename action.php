@@ -80,7 +80,7 @@ if (isset($_POST["user_by_name"]) && !empty($_POST["user_by_name"])) {
 	$result =mysqli_query($connection,$searchquery);
 	if (!mysqli_num_rows($result)) {
 		$all_results = array('status'=>'No user found!');
-		echo "not found";
+		// echo "not found";
 	}
 	else{
 			$all_results = array('status'=>'User found');
@@ -88,12 +88,12 @@ if (isset($_POST["user_by_name"]) && !empty($_POST["user_by_name"])) {
 			array_push($all_results,$row);
 			// header("Location:admin.php");
 			// echo "$all_results";
-			echo json_encode($all_results);
+			// echo json_encode($all_results);
 
 		}
 		
 	}
-		// echo json_encode($all_results);
+		echo json_encode($all_results);
 	}
 
 ?>

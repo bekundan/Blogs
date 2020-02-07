@@ -81,22 +81,22 @@ $(".updated_post").submit(function(e){
 // searching username
 
 $(".search_users").submit(function(e){
-	e.preventDefault;
+	e.preventDefault();
 	var form=$(this);
 	var form_url=form.attr("action");
 	var form_type =form.attr("method");
-	var form_data= form.serialize;
+	var form_data= form.serialize();
 	$.ajax({
 		type:form_type,
 		url:form_url,
 		data:form_data,
-		success:function(){
+		success:function(data){
 			$("#user_response tbody").html("");
 			var data =JSON.parse(data);
 			console.log(data);
 			if (data["status"] == "User found"){
 				for(i=0; i< Object.keys(data).length-1;i++){
-					$("#user_response tbody").append("<tr><td>"+data[i]["Name"]+"</td><td>"+data[i]["phone"]+"</td><td>"+data[i]["Email"]+"</td><td>"+data[i]["Code"]+"</td></tr>");  
+$("#user_response tbody").append("<tr><td>"+data[i]["Name"]+"</td><td>"+data[i]["phone"]+"</td><td>"+data[i]["Email"]+"</td><td>"+data[i]["Code"]+"</td><td><button id='opbtn'>ChangrRole<br></button></td></tr>");  
 					
 				}
 			}else{
@@ -106,6 +106,14 @@ $(".search_users").submit(function(e){
 	});
 	
 });
+$("#option").submit(function(){
+	alert("submit");
+});
 
+
+// option
+$("#opbtn").click(function(){
+	$("#option-form").toggle();
+})
 
 });
