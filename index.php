@@ -246,9 +246,9 @@ $login_status =false;
             <!-- new post section -->
             <section>
                 <div class="container">
-                    <div class="row">
+                    <div class="row d-flex">
                        
-                            ?>
+                           <!--  ?> -->
                             <!--
                             <div class="article_summary">
                                 <h1></h1>
